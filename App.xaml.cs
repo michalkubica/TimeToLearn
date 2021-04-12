@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace LearningTimer
 {
@@ -95,6 +96,21 @@ namespace LearningTimer
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        protected override void OnActivated(IActivatedEventArgs e)
+        {
+            // Handle notification activation
+            if (e is ToastNotificationActivatedEventArgs toastActivationArgs)
+            {
+                // Obtain the arguments from the notification
+                ToastArguments args = ToastArguments.Parse(toastActivationArgs.Argument);
+
+                // Obtain any user input (text boxes, menu selections) from the notification
+                ValueSet userInput = toastActivationArgs.UserInput;
+
+                // TODO: Show the corresponding content
+            }
         }
     }
 }

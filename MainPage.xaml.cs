@@ -8,7 +8,8 @@ using Windows.UI.Xaml.Controls;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 //todo
-//notifications and reacting to reply
+//notifications and reacting to reply (wait for reply before changing status), showing actual programmed time in notification
+//dont start at all when total time programmed is 0
 //app icon
 
 namespace LearningTimer
@@ -76,8 +77,17 @@ namespace LearningTimer
                     createTimer();
                     timer.Start();
                     secondsElapsed++;
-                    if (currentState == AppState.Learn) updateAppState(AppState.Break);
-                    else { updateAppState(AppState.Learn); updateCycle(); }
+                    if (currentState == AppState.Learn)
+                    {
+                        NotificationManager.showLearnEndNotification();
+                        updateAppState(AppState.Break);
+                    }
+                    else
+                    {
+                        NotificationManager.showBreakEndNotification();
+                        updateAppState(AppState.Learn);
+                        updateCycle();
+                    }
                 }
             }
             else
