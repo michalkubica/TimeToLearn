@@ -1,5 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.Notifications;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
@@ -9,7 +8,6 @@ using Windows.UI.Xaml.Controls;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 //todo
-//na githuba https://stackoverflow.com/questions/16824994/git-in-visual-studio-add-existing-project albo inny tutorial, we'll see
 //notifications and reacting to reply
 //app icon
 
@@ -52,17 +50,6 @@ namespace LearningTimer
             timerSets = new ProgramTimer(boxLearningH, boxLearningM, boxLearningS, boxBreakH, boxBreakM, boxBreakS, boxRepeatTimes);
             updateAppState(AppState.Learn);
             updateCycle();
-
-           new ToastContentBuilder()
-    .AddArgument("action", "viewConversation")
-    .AddArgument("conversationId", 9816)
-    .AddText("Andrew sent you a picture")
-    .AddText("Check this out, The Enchantments in Washington!")
-    .AddButton(new ToastButton()
-        .SetContent("OK")
-        .AddArgument("action", "ok")
-        .SetBackgroundActivation())
-    .Show();
         }
 
         private void buttonStop_Click(object sender, RoutedEventArgs e)
